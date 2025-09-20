@@ -24,7 +24,7 @@ public class MeshGenerator : MonoBehaviour
             {
                 for (int j = 0; j < yVertice; j++)
                 {
-                    vertices[k++] = new Vector3((float)i, (float)function.calculate(i , j ), (float)j);
+                    vertices[k++] = new Vector3(i, (int)function.calculate(i, j), j);
                 }
             }
         }
@@ -56,7 +56,7 @@ public class MeshGenerator : MonoBehaviour
                 triangles[k++] = bottomLeft;
                 triangles[k++] = bottomRight;
 
-                // Bottom face (normals point down — reverse winding)
+                // Bottom face (normals point down ? reverse winding)
                 triangles[k++] = topLeft + toReverse;
                 triangles[k++] = topRight + toReverse;
                 triangles[k++] = bottomLeft + toReverse;
@@ -71,5 +71,9 @@ public class MeshGenerator : MonoBehaviour
 
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
+
+        MeshCollider mc = gameObject.AddComponent<MeshCollider>();
+        mc.sharedMesh = mesh; // assign generated mesh
+        mc.convex = false; // keep false for static concave mesh; true if moving
     }
 }
