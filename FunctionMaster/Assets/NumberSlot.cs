@@ -1,7 +1,15 @@
 using UnityEngine;
 
-public class NumberSlot : BaseSlot<Number>
+public class NumberSlot : BaseSlot
 {
-    // Inherits everything from SlotBase<Number>.
-    // Add Number-specific logic here if needed.
+    protected override bool AcceptsType(Collider other, out Component component)
+    {
+        if (other.TryGetComponent<Number>(out Number num))
+        {
+            component = num;
+            return true;
+        }
+        component = null;
+        return false;
+    }
 }

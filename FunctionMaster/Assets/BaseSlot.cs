@@ -5,14 +5,15 @@ using UnityEngine;
 /// Generic base class for slots that attach objects via a ConfigurableJoint.
 /// </summary>
 [RequireComponent(typeof(SphereCollider))]
-public abstract class BaseSlot<T> : MonoBehaviour where T : Component
+public abstract class BaseSlot : MonoBehaviour
 {
-    [SerializeField] private Rigidbody slotAnchor;
+    [SerializeField] protected Rigidbody slotAnchor;
 
-    public T SlottedItem { get; private set; }
+    protected ConfigurableJoint slotJoint;
+    protected readonly List<Component> competitors = new List<Component>();
 
-    private ConfigurableJoint slotJoint;
-    private readonly List<T> competitors = new List<T>();
+    public Component SlottedObject { get; protected set; }
+    public bool HasItem => SlottedObject != null;
 
     protected virtual void Update()
     {
@@ -23,8 +24,8 @@ public abstract class BaseSlot<T> : MonoBehaviour where T : Component
     {
         if (competitors.Count == 0) return;
 
-        // Find closest competitor
-        T closest = competitors[0];
+        // Find closest
+        Component closest = competitors[0];
         float closestDist = Vector3.Distance(closest.transform.position, transform.position);
 
         for (int i = 1; i < competitors.Count; i++)
@@ -37,21 +38,21 @@ public abstract class BaseSlot<T> : MonoBehaviour where T : Component
             }
         }
 
-        if (closest != SlottedItem)
+        if (closest != SlottedObject)
         {
             UnslotItem();
             SlotItem(closest);
         }
     }
 
-    private void SlotItem(T item)
+    protected virtual void SlotItem(Component item)
     {
-        SlottedItem = item;
+        SlottedObject = item;
 
         if (!item.TryGetComponent<Rigidbody>(out Rigidbody itemBody))
         {
-            Debug.LogError($"{GetType().Name}: Could not find Rigidbody on {typeof(T).Name} to slot.");
-            SlottedItem = null;
+            Debug.LogError($"{GetType().Name}: Could not find Rigidbody on {item.GetType().Name} to slot.");
+            SlottedObject = null;
             return;
         }
 
@@ -74,29 +75,31 @@ public abstract class BaseSlot<T> : MonoBehaviour where T : Component
         slotJoint.angularYZDrive = drive;
     }
 
-    private void UnslotItem()
+    protected virtual void UnslotItem()
     {
-        if (SlottedItem == null) return;
-
+        if (SlottedObject == null) return;
         Destroy(slotJoint);
-        SlottedItem = null;
+        SlottedObject = null;
         slotJoint = null;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<T>(out T item))
+        if (AcceptsType(other, out Component c))
         {
-            competitors.Add(item);
+            competitors.Add(c);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<T>(out T item))
+        if (AcceptsType(other, out Component c))
         {
-            if (item == SlottedItem) UnslotItem();
-            competitors.Remove(item);
+            if (c == SlottedObject) UnslotItem();
+            competitors.Remove(c);
         }
     }
+
+    // Derived classes define which component types are valid.
+    protected abstract bool AcceptsType(Collider other, out Component component);
 }

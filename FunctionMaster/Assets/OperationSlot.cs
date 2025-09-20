@@ -1,7 +1,15 @@
 using UnityEngine;
 
-public class OperationSlot : BaseSlot<Operation>
+public class OperationSlot : BaseSlot
 {
-    // Inherits everything from SlotBase<Operation>.
-    // Add Operation-specific logic here if needed.
+    protected override bool AcceptsType(Collider other, out Component component)
+    {
+        if (other.TryGetComponent<Operation>(out Operation op))
+        {
+            component = op;
+            return true;
+        }
+        component = null;
+        return false;
+    }
 }
