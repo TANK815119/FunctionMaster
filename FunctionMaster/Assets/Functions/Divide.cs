@@ -19,7 +19,14 @@ namespace Assets.Functions
 
         public override double calculate(double x, double y)
         {
-            return function1.calculate(x, y) / function2.calculate(x, y);
+            if (function2.calculate(x, y) == 0)
+            {
+                return calculate(x + 0.01, y + 0.01);
+            }
+            else
+            {
+                return function1.calculate(x, y) / function2.calculate(x, y);
+            }
         }
 
     }

@@ -1,9 +1,11 @@
 ﻿using Assets.Functions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets
 {
@@ -11,37 +13,82 @@ namespace Assets
     {
         public static Function parse(string input)
         {
-            input.Replace(" ", "");
+            UnityEngine.Debug.Log("Parsing " + input);
+            input = input.Replace(" ", "");
+            int parenthesis = 0;
+            bool surrounded = true;
+            for (int i  = 0; i < input.Length; i++)
+            {
+                char c = input[i];
+                if (c == '(')
+                {
+                    parenthesis++;
+                }
+                if (c == ')')
+                {
+                    parenthesis--;
+                }
+                if(parenthesis == 0)
+                {
+                    surrounded = false;
+                    break;
+                }
+            }
+            if (surrounded) 
+            {
+                return parse(input.Substring(1, input.Length - 2));
+            }
+            parenthesis = 0;
             for (int i = 0; i < input.Length; i++) 
             {
                 char c = input[i];
-                if(c == '+')
+                if(c == '('){
+                    parenthesis++;
+                }
+                if(c == ')')
                 {
-                    return new Add(parse(input.Substring(0, i)), parse(input.Substring(i + 1, input.Length - i - 1)));
-                }else if (c == '-')
+                    parenthesis--;
+                }
+                if (parenthesis == 0)
                 {
-                    if (i > 0)
+                    if (c == '+')
+                    {
+                        return new Add(parse(input.Substring(0, i)), parse(input.Substring(i + 1)));
+                    }
+                    else if (c == '-')
                     {
                         return new Add(parse(input.Substring(0, i)), new Multiply(parse(input.Substring(i + 1)), new Constant(-1)));
                     }
-                    else
+                }
+            }
+            parenthesis = 0;
+            for (int i = 0; i < input.Length; i++)
+            {
+                char c = input[i];
+                if (c == '(')
+                {
+                    parenthesis++;
+                }
+                if (c == ')')
+                {
+                    parenthesis--;
+                }
+                if (parenthesis == 0)
+                {
+                    if (c == '*')
                     {
-                        return new Multiply(parse(input.Substring(1)), new Constant(-1));
+                        return new Multiply(parse(input.Substring(0, i)), parse(input.Substring(i + 1)));
+                    }
+                    else if (c == '/')
+                    {
+                        return new Divide(parse(input.Substring(0, i)), parse(input.Substring(i + 1)));
                     }
                 }
             }
 
-            for (int i = 0; i < input.Length; i++)
+            if (input[0] == '#')
             {
-                char c = input[i];
-                if (c == '*')
-                {
-                    return new Multiply(parse(input.Substring(0, i)), parse(input.Substring(i + 1, input.Length - i)));
-                }
-                else if (c == '/')
-                {
-                    return new Divide(parse(input.Substring(0, i)), parse(input.Substring(i + 1, input.Length - i)));
-                }
+                return new Multiply(parse(input.Substring(1)), new Constant(-1));
             }
 
             if (input == "x")

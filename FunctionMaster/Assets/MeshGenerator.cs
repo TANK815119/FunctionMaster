@@ -15,7 +15,7 @@ public class MeshGenerator : MonoBehaviour
         GetComponent<MeshFilter>().mesh = mesh;
         int k = 0;
         // Define vertices (positions in 3D space)
-        Function function = FunctionParser.parse("x+y");
+        Function function = FunctionParser.parse("(x - 5) * (y - 5)");
 
         Vector3[] vertices = new Vector3[xVertice * yVertice * 2];
         for (int l = 0; l < 2; l++)
@@ -24,7 +24,7 @@ public class MeshGenerator : MonoBehaviour
             {
                 for (int j = 0; j < yVertice; j++)
                 {
-                    vertices[k++] = new Vector3(i, (int)function.calculate(i, j), j);
+                    vertices[k++] = new Vector3((float)i, (float)function.calculate(i , j ), (float)j);
                 }
             }
         }
