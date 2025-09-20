@@ -15,7 +15,11 @@ public class MeshGenerator : MonoBehaviour
         GetComponent<MeshFilter>().mesh = mesh;
         int k = 0;
         // Define vertices (positions in 3D space)
-        Function function = FunctionParser.parse("x+y");
+        //Function function = FunctionParser.parse("x+y");
+        int function (int x, int y)
+        {
+            return x + y;
+        }
 
         Vector3[] vertices = new Vector3[xVertice * yVertice * 2];
         for (int l = 0; l < 2; l++)
@@ -24,7 +28,7 @@ public class MeshGenerator : MonoBehaviour
             {
                 for (int j = 0; j < yVertice; j++)
                 {
-                    vertices[k++] = new Vector3(i, (int)function.calculate(i, j), j);
+                    vertices[k++] = new Vector3(i, (int)function(i, j), j);
                 }
             }
         }
@@ -56,7 +60,7 @@ public class MeshGenerator : MonoBehaviour
                 triangles[k++] = bottomLeft;
                 triangles[k++] = bottomRight;
 
-                // Bottom face (normals point down — reverse winding)
+                // Bottom face (normals point down ? reverse winding)
                 triangles[k++] = topLeft + toReverse;
                 triangles[k++] = topRight + toReverse;
                 triangles[k++] = bottomLeft + toReverse;
@@ -71,5 +75,9 @@ public class MeshGenerator : MonoBehaviour
 
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
+
+        MeshCollider mc = gameObject.AddComponent<MeshCollider>();
+        mc.sharedMesh = mesh; // assign generated mesh
+        mc.convex = false; // keep false for static concave mesh; true if moving
     }
 }
