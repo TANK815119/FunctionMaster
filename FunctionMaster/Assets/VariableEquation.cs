@@ -55,6 +55,11 @@ public class VariableEquation : MonoBehaviour
                 Level2 level2 = FindObjectOfType<Level2>();
                 level2.StartLevel();
             }
+            else if (curScene.Equals("Level3"))
+            {
+                Level3 level3 = FindObjectOfType<Level3>();
+                level3.StartLevel();
+            }
         }
     }
 

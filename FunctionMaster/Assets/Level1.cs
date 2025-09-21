@@ -16,6 +16,11 @@ public class Level1 : MonoBehaviour
 
     public void StartLevel()
     {
+        if (start_level == true)
+        {
+            ball.position = start.position;
+            return;
+        }
         start_level = true;
         ball.GetComponent<Rigidbody>().isKinematic = false;
     }
