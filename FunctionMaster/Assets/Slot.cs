@@ -5,7 +5,7 @@ using UnityEngine;
 public class Slot : MonoBehaviour
 {
     [SerializeField] private Rigidbody slotAnchor;
-    [SerializeField] private SlotType slotType;
+    [field: SerializeField] public SlotType SlotType { get; private set; }
     public Item SlottedItem { get; private set; }
     private ConfigurableJoint slotJoint;
     private List<Item> competitors;
@@ -93,7 +93,7 @@ public class Slot : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<Item>(out Item item)  && item.ItemType == slotType)
+        if (other.TryGetComponent<Item>(out Item item)  && item.ItemType == SlotType)
         {
             competitors.Add(item);
         }
