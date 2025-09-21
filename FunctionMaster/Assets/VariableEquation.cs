@@ -29,8 +29,12 @@ public class VariableEquation : MonoBehaviour
             meshGenerator.ShapeMesh(equation);
 
             string curScene = SceneManager.GetActiveScene().name;
-
-            if (curScene.Equals("Level2")) {
+            if (curScene.Equals("Level1"))
+            {
+                Level1 level1 = FindObjectOfType<Level1>();
+                level1.StartLevel();
+            }
+            else if (curScene.Equals("Level2")) {
                 Level2 level2 = FindObjectOfType<Level2>();
                 level2.StartLevel();
             }
