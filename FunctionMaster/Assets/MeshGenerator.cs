@@ -39,7 +39,7 @@ public class MeshGenerator : MonoBehaviour
                     {
                         z = Mathf.Min(z, maxHeight);
                     }
-                    vertices[k++] = new Vector3(i / 10f, z, j / 10f);
+                    vertices[k++] = new Vector3(i / 10f + 0f, z + 0f, j / 10f + 0f); //modify here to transform mesh generator position
                 }
             }
         }
