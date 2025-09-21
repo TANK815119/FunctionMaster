@@ -4,6 +4,7 @@ using System.Text;
 using Assets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem; // Required for programmatic Input System access
 
 public class VariableEquation : MonoBehaviour
 {
@@ -11,8 +12,16 @@ public class VariableEquation : MonoBehaviour
 
     private void Update()
     {
+        // Access the keyboard directly
+        Keyboard keyboard = Keyboard.current;
+        if (keyboard == null)
+        {
+            Debug.LogError("Keyboard input device not found!");
+            return;
+        }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Check for Space key press
+        if (keyboard.spaceKey.wasPressedThisFrame)
         {
             string equation = EquationToString();
 
@@ -34,11 +43,11 @@ public class VariableEquation : MonoBehaviour
                 Level1 level1 = FindObjectOfType<Level1>();
                 level1.StartLevel();
             }
-            else if (curScene.Equals("Level2")) {
+            else if (curScene.Equals("Level2"))
+            {
                 Level2 level2 = FindObjectOfType<Level2>();
                 level2.StartLevel();
             }
-            
         }
     }
     public string EquationToString()
