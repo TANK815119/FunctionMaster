@@ -19,6 +19,7 @@ public class Ball : MonoBehaviour
         if (Vector3.Distance(ball.position, pointB.position) < 0.5)
         {
             ball.position = pointB.position;
+            ball.GetComponent<Rigidbody>().isKinematic = true;
             Debug.Log("Close!");
         }
     }
