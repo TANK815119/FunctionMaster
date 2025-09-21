@@ -11,14 +11,25 @@ public class Level2 : MonoBehaviour
     // Start is called before the first frame update
     bool p1 = false, p2 = false;
 
+    bool start_level = false;
+
+    public void StartLevel()
+    {
+        start_level = true;
+        ball.GetComponent<Rigidbody>().isKinematic = false;
+    }
+
     void Start()
     {
         ball.position = start.position;
+        ball.GetComponent<Rigidbody>().isKinematic = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!start_level) return;
+
         if (Vector3.Distance(ball.position, target.position) < 0.5)
         {
             p1 = true;
@@ -32,6 +43,7 @@ public class Level2 : MonoBehaviour
             ball.position = end.position;
             ball.GetComponent<Rigidbody>().isKinematic = true;
             Debug.Log("Passed Level 2!");
+            start_level = false;
         }
     }
 }

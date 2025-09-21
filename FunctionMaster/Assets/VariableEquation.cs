@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Assets;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VariableEquation : MonoBehaviour
 {
@@ -26,6 +27,14 @@ public class VariableEquation : MonoBehaviour
             MeshGenerator meshGenerator = gameObject.AddComponent<MeshGenerator>();
 
             meshGenerator.ShapeMesh(equation);
+
+            string curScene = SceneManager.GetActiveScene().name;
+
+            if (curScene.Equals("Level2")) {
+                Level2 level2 = FindObjectOfType<Level2>();
+                level2.StartLevel();
+            }
+            
         }
     }
     public string EquationToString()
