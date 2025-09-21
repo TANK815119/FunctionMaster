@@ -14,7 +14,7 @@ public class MeshGenerator : MonoBehaviour
         ShapeMesh("(x - 5) / (y - 5)");
     }
 
-    void ShapeMesh(string formula)
+    public void ShapeMesh(string formula)
     {
         Mesh mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
