@@ -56,6 +56,7 @@ public class Slot : MonoBehaviour
             Debug.LogError("ItemSlot: Could not find Rigidbody on Item to slot.");
             return;
         }
+        itemBody.useGravity = false;
 
         // make physics joint from slotAnchor to slotted item
         slotJoint = slotAnchor.gameObject.AddComponent<ConfigurableJoint>();
@@ -85,6 +86,14 @@ public class Slot : MonoBehaviour
         {
             return;
         }
+
+        // fetch the item's rigidbody
+        if (!SlottedItem.TryGetComponent<Rigidbody>(out Rigidbody itemBody))
+        {
+            Debug.LogError("ItemSlot: Could not find Rigidbody on Item to slot.");
+            return;
+        }
+        itemBody.useGravity = true;
 
         Destroy(slotJoint);
         SlottedItem = null;
