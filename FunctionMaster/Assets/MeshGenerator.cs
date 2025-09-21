@@ -29,7 +29,16 @@ public class MeshGenerator : MonoBehaviour
             {
                 for (int j = 0; j < yVertice; j++)
                 {
-                    vertices[k++] = new Vector3(i / 10f, (float)function.calculate(i / 10f, j / 10f), j / 10f);
+                    float z = (float)function.calculate(i / 10f, j / 10f);
+                    if(z < 0)
+                    {
+                        z = Mathf.Max(z, -5);
+                    }
+                    else
+                    {
+                        z = Mathf.Min(z, 5);
+                    }
+                    vertices[k++] = new Vector3(i / 10f, z, j / 10f);
                 }
             }
         }
@@ -52,23 +61,27 @@ public class MeshGenerator : MonoBehaviour
                 int bottomRight = (i + 1) + (j + 1) * xVertice;
                 int toReverse = xVertice * yVertice;
 
-                // Top face (normals point up)
-                triangles[k++] = topLeft;
-                triangles[k++] = bottomLeft;
-                triangles[k++] = topRight;
 
-                triangles[k++] = topRight;
-                triangles[k++] = bottomLeft;
-                triangles[k++] = bottomRight;
+                if (Mathf.Abs(vertices[topLeft].y) < 4.999 || Mathf.Abs(vertices[bottomLeft].y) < 4.999 || Mathf.Abs(topLeft) < 4.999)
+                {
+                    triangles[k++] = topLeft;
+                    triangles[k++] = bottomLeft;
+                    triangles[k++] = topRight;
 
-                // Bottom face (normals point down ? reverse winding)
-                triangles[k++] = topLeft + toReverse;
-                triangles[k++] = topRight + toReverse;
-                triangles[k++] = bottomLeft + toReverse;
+                    triangles[k++] = topLeft + toReverse;
+                    triangles[k++] = topRight + toReverse;
+                    triangles[k++] = bottomLeft + toReverse;
+                }
+                if (Mathf.Abs(vertices[bottomRight].y) < 4.999 || Mathf.Abs(vertices[bottomLeft].y) < 4.999 || Mathf.Abs(topLeft) < 4.999)
+                {
+                    triangles[k++] = topRight;
+                    triangles[k++] = bottomLeft;
+                    triangles[k++] = bottomRight;
 
-                triangles[k++] = topRight + toReverse;
-                triangles[k++] = bottomRight + toReverse;
-                triangles[k++] = bottomLeft + toReverse;
+                    triangles[k++] = topRight + toReverse;
+                    triangles[k++] = bottomRight + toReverse;
+                    triangles[k++] = bottomLeft + toReverse;
+                }
             }
         }
 
