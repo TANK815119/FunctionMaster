@@ -91,6 +91,10 @@ public class MeshGenerator : MonoBehaviour
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
 
+        if(TryGetComponent<MeshCollider>(out MeshCollider existingMc))
+        {
+            Destroy(existingMc);
+        }
         MeshCollider mc = gameObject.AddComponent<MeshCollider>();
         mc.sharedMesh = mesh; // assign generated mesh
         mc.convex = false; // keep false for static concave mesh; true if moving

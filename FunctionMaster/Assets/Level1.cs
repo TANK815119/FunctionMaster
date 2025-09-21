@@ -39,7 +39,7 @@ public class Level1 : MonoBehaviour
     {
         if (!start_level) return;
 
-        if (Vector3.Distance(ball.position, end.position) < 0.5)
+        if (Vector3.Distance(ball.position, end.position) < 1)
         {
             p1 = true;
         }
