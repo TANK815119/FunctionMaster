@@ -23,8 +23,8 @@ public class CameraToggle : MonoBehaviour
 
     void Update()
     {
-        // Check for "T" key press using the new Input System
-        if (Keyboard.current.tKey.wasPressedThisFrame)
+        // Check for "T" key press using legacy Input
+        if (Input.GetKeyDown(KeyCode.T))
         {
             usingMainView = !usingMainView;
             targetView = usingMainView ? mainView : auxView;
@@ -41,4 +41,5 @@ public class CameraToggle : MonoBehaviour
             targetView.rotation,
             Time.deltaTime * transitionSpeed);
     }
+
 }

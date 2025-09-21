@@ -19,49 +19,28 @@ public class VariableEquation : MonoBehaviour
 
     private void Update()
     {
-        // Access the keyboard directly
-        Keyboard keyboard = Keyboard.current;
-        if (keyboard == null)
-        {
-            Debug.LogError("Keyboard input device not found!");
-            return;
-        }
-
-        // Check for Space key press
-        if (keyboard.spaceKey.wasPressedThisFrame)
+        // Check for Space key press using legacy Input
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             string equation = EquationToString();
 
-            if (ValidateNoUnderscores(equation) == false)
-            {
-                //equation still needs more cooking
+            if (!ValidateNoUnderscores(equation))
                 return;
-            }
 
             equation = SanitizeForParser(equation);
-
-            //MeshGenerator meshGenerator = gameObject.AddComponent<MeshGenerator>();
 
             meshGenerator.ShapeMesh(equation);
 
             string curScene = SceneManager.GetActiveScene().name;
             if (curScene.Equals("Level1"))
-            {
-                Level1 level1 = FindObjectOfType<Level1>();
-                level1.StartLevel();
-            }
+                FindObjectOfType<Level1>().StartLevel();
             else if (curScene.Equals("Level2"))
-            {
-                Level2 level2 = FindObjectOfType<Level2>();
-                level2.StartLevel();
-            }
+                FindObjectOfType<Level2>().StartLevel();
             else if (curScene.Equals("Level3"))
-            {
-                Level3 level3 = FindObjectOfType<Level3>();
-                level3.StartLevel();
-            }
+                FindObjectOfType<Level3>().StartLevel();
         }
     }
+
 
     public string EquationToString()
     {
