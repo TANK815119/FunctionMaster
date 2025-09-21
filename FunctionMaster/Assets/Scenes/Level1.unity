@@ -1138,6 +1138,10 @@ PrefabInstance:
       propertyPath: <Value>k__BackingField
       value: '-'
       objectReference: {fileID: 0}
+    - target: {fileID: 3776819019697645455, guid: 56e54f306f8087a448998804aae3f164, type: 3}
+      propertyPath: m_text
+      value: '-'
+      objectReference: {fileID: 0}
     - target: {fileID: 7198563324643933021, guid: 56e54f306f8087a448998804aae3f164, type: 3}
       propertyPath: m_Name
       value: Operation
@@ -1358,7 +1362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5613943021918974276, guid: e8da0a0d883a88043a53856bef71cd68, type: 3}
       propertyPath: m_text
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5899527022232387544, guid: e8da0a0d883a88043a53856bef71cd68, type: 3}
       propertyPath: <Value>k__BackingField
