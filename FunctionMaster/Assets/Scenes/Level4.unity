@@ -182,6 +182,10 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4057476382005652874, guid: 56e54f306f8087a448998804aae3f164, type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 7198563324643933021, guid: 56e54f306f8087a448998804aae3f164, type: 3}
       propertyPath: m_Name
       value: Tanks
