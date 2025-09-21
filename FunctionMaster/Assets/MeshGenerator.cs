@@ -62,8 +62,8 @@ public class MeshGenerator : MonoBehaviour
                 int toReverse = xVertice * yVertice;
 
 
-                if (Mathf.Abs(vertices[topLeft].y) < 4.999 || Mathf.Abs(vertices[bottomLeft].y) < 4.999 || Mathf.Abs(topLeft) < 4.999)
-                {
+                //if (Mathf.Abs(vertices[topLeft].y) < 4.999 || Mathf.Abs(vertices[bottomLeft].y) < 4.999 || Mathf.Abs(topLeft) < 4.999)
+                //{
                     triangles[k++] = topLeft;
                     triangles[k++] = bottomLeft;
                     triangles[k++] = topRight;
@@ -71,9 +71,9 @@ public class MeshGenerator : MonoBehaviour
                     triangles[k++] = topLeft + toReverse;
                     triangles[k++] = topRight + toReverse;
                     triangles[k++] = bottomLeft + toReverse;
-                }
-                if (Mathf.Abs(vertices[bottomRight].y) < 4.999 || Mathf.Abs(vertices[bottomLeft].y) < 4.999 || Mathf.Abs(topLeft) < 4.999)
-                {
+                //}
+                //if (Mathf.Abs(vertices[bottomRight].y) < 4.999 || Mathf.Abs(vertices[bottomLeft].y) < 4.999 || Mathf.Abs(topLeft) < 4.999)
+                //{
                     triangles[k++] = topRight;
                     triangles[k++] = bottomLeft;
                     triangles[k++] = bottomRight;
@@ -81,7 +81,7 @@ public class MeshGenerator : MonoBehaviour
                     triangles[k++] = topRight + toReverse;
                     triangles[k++] = bottomRight + toReverse;
                     triangles[k++] = bottomLeft + toReverse;
-                }
+                //}
             }
         }
 
