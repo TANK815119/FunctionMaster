@@ -117,7 +117,7 @@ public class VariableEquation : MonoBehaviour
         {
             if (char.IsDigit(c) || c == 'x' || c == 'y' ||
                 c == '+' || c == '-' || c == '*' || c == '/' ||
-                c == '(' || c == ')' || c == '.' || c == '#')
+                c == '(' || c == ')' || c == '.' || c == '#' || c == '^')
             {
                 filtered.Append(c);
             }
