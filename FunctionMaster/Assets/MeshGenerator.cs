@@ -11,7 +11,7 @@ public class MeshGenerator : MonoBehaviour
     public const int yVertice = 100;
     void Start()
     {
-        ShapeMesh("x * y");
+        //ShapeMesh("x^2 + y^2");
     }
 
     public void ShapeMesh(string formula)

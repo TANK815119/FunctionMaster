@@ -86,6 +86,26 @@ namespace Assets
                 }
             }
 
+            for (int i = 0; i < input.Length; i++)
+            {
+                char c = input[i];
+                if (c == '(')
+                {
+                    parenthesis++;
+                }
+                if (c == ')')
+                {
+                    parenthesis--;
+                }
+                if (parenthesis == 0)
+                {
+                    if (c == '^')
+                    {
+                        return new Exponentiate(parse(input.Substring(0, i)), parse(input.Substring(i + 1)));
+                    }
+                }
+            }
+
             if (input[0] == '#')
             {
                 return new Multiply(parse(input.Substring(1)), new Constant(-1));
