@@ -14,6 +14,14 @@ public class Level3 : MonoBehaviour
 
     public void StartLevel()
     {
+        if (start_level == true)
+        {
+            ball.position = start.position;
+            Rigidbody rb = ball.GetComponent<Rigidbody>();
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            return;
+        }
         start_level = true;
         ball.GetComponent<Rigidbody>().isKinematic = false;
     }
