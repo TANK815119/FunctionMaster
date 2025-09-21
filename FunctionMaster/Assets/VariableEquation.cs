@@ -25,7 +25,7 @@ public class VariableEquation : MonoBehaviour
 
             MeshGenerator meshGenerator = gameObject.AddComponent<MeshGenerator>();
 
-            meshGenerator.Equation = equation;
+            meshGenerator.ShapeMesh(equation);
         }
     }
     public string EquationToString()
