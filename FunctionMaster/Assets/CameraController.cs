@@ -65,43 +65,43 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            // Stop any ongoing movement
-            if (currentMoveCoroutine != null)
-                StopCoroutine(currentMoveCoroutine);
+        //if (Input.GetKeyDown(KeyCode.RightArrow))
+        //{
+        //    // Stop any ongoing movement
+        //    if (currentMoveCoroutine != null)
+        //        StopCoroutine(currentMoveCoroutine);
 
-            // Start moving to point A
-            currentMoveCoroutine = StartCoroutine(LerpPosition(pointA.position, duration));
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            // Stop any ongoing movement
-            if (currentMoveCoroutine != null)
-                StopCoroutine(currentMoveCoroutine);
+        //    // Start moving to point A
+        //    currentMoveCoroutine = StartCoroutine(LerpPosition(pointA.position, duration));
+        //}
+        //else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //{
+        //    // Stop any ongoing movement
+        //    if (currentMoveCoroutine != null)
+        //        StopCoroutine(currentMoveCoroutine);
 
-            // Start moving to point B
-            currentMoveCoroutine = StartCoroutine(LerpPosition(pointB.position, duration));
-        }
+        //    // Start moving to point B
+        //    currentMoveCoroutine = StartCoroutine(LerpPosition(pointB.position, duration));
+        //}
 
 
-        // Get input
-        float horizontal = 0f;
-        float vertical = 0f;
+        //// Get input
+        //float horizontal = 0f;
+        //float vertical = 0f;
 
-        if (Input.GetKey(KeyCode.W)) vertical = 1f;
-        if (Input.GetKey(KeyCode.S)) vertical = -1f;
-        if (Input.GetKey(KeyCode.A)) horizontal = -1f;
-        if (Input.GetKey(KeyCode.D)) horizontal = 1f;
+        //if (Input.GetKey(KeyCode.W)) vertical = 1f;
+        //if (Input.GetKey(KeyCode.S)) vertical = -1f;
+        //if (Input.GetKey(KeyCode.A)) horizontal = -1f;
+        //if (Input.GetKey(KeyCode.D)) horizontal = 1f;
 
-        // Adjust yaw and pitch
-        yaw += horizontal * rotationSpeed * Time.deltaTime;
-        pitch -= vertical * rotationSpeed * Time.deltaTime;
+        //// Adjust yaw and pitch
+        //yaw += horizontal * rotationSpeed * Time.deltaTime;
+        //pitch -= vertical * rotationSpeed * Time.deltaTime;
 
-        // Clamp pitch so you can’t flip the camera upside down
-        pitch = Mathf.Clamp(pitch, -80f, 80f);
+        //// Clamp pitch so you can’t flip the camera upside down
+        //pitch = Mathf.Clamp(pitch, -80f, 80f);
 
-        // Apply rotation
-        transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+        //// Apply rotation
+        //transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
     }
 }

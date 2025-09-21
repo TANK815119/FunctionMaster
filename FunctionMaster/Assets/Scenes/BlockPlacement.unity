@@ -628,6 +628,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2108374900}
+  - component: {fileID: 2108374901}
   m_Layer: 0
   m_Name: Origin
   m_TagString: Untagged
@@ -653,6 +654,22 @@ Transform:
   - {fileID: 1701608441}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2108374901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108374899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 263daaa76f72f7c4785e14854069b4b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headset: {fileID: 1920816243}
+  leftController: {fileID: 1145578497}
+  rightController: {fileID: 1701608441}
+  turnSpeed: 120
 --- !u!1001 &5967501930614815310
 PrefabInstance:
   m_ObjectHideFlags: 0

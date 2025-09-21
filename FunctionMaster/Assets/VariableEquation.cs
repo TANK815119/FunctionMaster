@@ -9,6 +9,13 @@ using UnityEngine.InputSystem; // Required for programmatic Input System access
 public class VariableEquation : MonoBehaviour
 {
     [SerializeField] private Slot[] slots;
+    [SerializeField] GameObject meshSpawnPoint;
+    private MeshGenerator meshGenerator;
+
+    private void Start()
+    {
+        meshGenerator = meshSpawnPoint.AddComponent<MeshGenerator>();
+    }
 
     private void Update()
     {
@@ -33,7 +40,7 @@ public class VariableEquation : MonoBehaviour
 
             equation = SanitizeForParser(equation);
 
-            MeshGenerator meshGenerator = gameObject.AddComponent<MeshGenerator>();
+            //MeshGenerator meshGenerator = gameObject.AddComponent<MeshGenerator>();
 
             meshGenerator.ShapeMesh(equation);
 
@@ -48,13 +55,9 @@ public class VariableEquation : MonoBehaviour
                 Level2 level2 = FindObjectOfType<Level2>();
                 level2.StartLevel();
             }
-            else if (curScene.Equals("Level3"))
-            {
-                Level3 level3 = FindObjectOfType<Level3>();
-                level3.StartLevel();
-            }
         }
     }
+
     public string EquationToString()
     {
         string equation = "";
