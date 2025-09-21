@@ -82,7 +82,7 @@ public class MeshGenerator : MonoBehaviour
                     triangles[k++] = topRight + toReverse;
                     triangles[k++] = bottomRight + toReverse;
                     triangles[k++] = bottomLeft + toReverse;
-                }
+                //}
             }
         }
 
