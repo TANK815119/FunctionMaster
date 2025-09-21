@@ -9,9 +9,10 @@ public class MeshGenerator : MonoBehaviour
 {
     public const int xVertice = 100;
     public const int yVertice = 100;
+    public const int maxHeight = 10;
     void Start()
     {
-        //ShapeMesh("x^2 + y^2");
+        ShapeMesh("x^2 + y^2");
     }
 
     public void ShapeMesh(string formula)
@@ -32,11 +33,11 @@ public class MeshGenerator : MonoBehaviour
                     float z = (float)function.calculate(i / 10f - 5, j / 10f - 5);
                     if(z < 0)
                     {
-                        z = Mathf.Max(z, -5);
+                        z = Mathf.Max(z, -maxHeight);
                     }
                     else
                     {
-                        z = Mathf.Min(z, 5);
+                        z = Mathf.Min(z, maxHeight);
                     }
                     vertices[k++] = new Vector3(i / 10f, z, j / 10f);
                 }
@@ -62,7 +63,7 @@ public class MeshGenerator : MonoBehaviour
                 int toReverse = xVertice * yVertice;
 
 
-                if (Mathf.Abs(vertices[topLeft].y) < 4.999 || Mathf.Abs(vertices[bottomLeft].y) < 4.999 || Mathf.Abs(topLeft) < 4.999)
+                if (Mathf.Abs(vertices[topLeft].y) < maxHeight - 0.001 || Mathf.Abs(vertices[bottomLeft].y) < maxHeight - 0.001 || Mathf.Abs(topLeft)  < maxHeight - 0.001)
                 {
                     triangles[k++] = topLeft;
                     triangles[k++] = bottomLeft;
@@ -72,7 +73,7 @@ public class MeshGenerator : MonoBehaviour
                     triangles[k++] = topRight + toReverse;
                     triangles[k++] = bottomLeft + toReverse;
                 }
-                if (Mathf.Abs(vertices[bottomRight].y) < 4.999 || Mathf.Abs(vertices[bottomLeft].y) < 4.999 || Mathf.Abs(topLeft) < 4.999)
+                if (Mathf.Abs(vertices[bottomRight].y) < maxHeight - 0.001 || Mathf.Abs(vertices[bottomLeft].y) < maxHeight - 0.001 || Mathf.Abs(topLeft) < maxHeight - 0.001)
                 {
                     triangles[k++] = topRight;
                     triangles[k++] = bottomLeft;
