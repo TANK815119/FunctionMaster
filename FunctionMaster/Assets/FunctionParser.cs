@@ -16,7 +16,7 @@ namespace Assets
             UnityEngine.Debug.Log("Parsing " + input);
             input = input.Replace(" ", "");
             int parenthesis = 0;
-            bool surrounded = true;
+            bool surrounded = input[0] == '(';
             for (int i  = 0; i < input.Length; i++)
             {
                 char c = input[i];
@@ -28,7 +28,7 @@ namespace Assets
                 {
                     parenthesis--;
                 }
-                if(parenthesis == 0)
+                if(parenthesis == 0 && i != input.Length - 1)
                 {
                     surrounded = false;
                     break;
