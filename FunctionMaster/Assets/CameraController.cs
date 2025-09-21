@@ -84,6 +84,7 @@ public class CameraController : MonoBehaviour
             currentMoveCoroutine = StartCoroutine(LerpPosition(pointB.position, duration));
         }
 
+
         // Get input
         float horizontal = 0f;
         float vertical = 0f;
