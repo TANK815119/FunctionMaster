@@ -222,12 +222,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slots:
-  - {fileID: 230781668844014364}
   - {fileID: 1494658966552990512}
   - {fileID: 80298568641482668}
   - {fileID: 3073417937774332167}
   - {fileID: 2706096277853299229}
-  - {fileID: 6365923671762224045}
 --- !u!1 &1021336590703015706
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotAnchor: {fileID: 8106028227989257573}
-  slotType: 3
+  <SlotType>k__BackingField: 3
 --- !u!1 &1097482730601862860
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,7 +1057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotAnchor: {fileID: 3076395432590243054}
-  slotType: 0
+  <SlotType>k__BackingField: 0
 --- !u!1 &3132590061775502311
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,7 +1350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotAnchor: {fileID: 8830376840887220207}
-  slotType: 3
+  <SlotType>k__BackingField: 3
 --- !u!1 &3757303758325250893
 GameObject:
   m_ObjectHideFlags: 0
@@ -1801,7 +1799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotAnchor: {fileID: 383080398270681087}
-  slotType: 2
+  <SlotType>k__BackingField: 2
 --- !u!1 &5522763510966862895
 GameObject:
   m_ObjectHideFlags: 0
@@ -1922,7 +1920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotAnchor: {fileID: 353875539469308791}
-  slotType: 0
+  <SlotType>k__BackingField: 0
 --- !u!1 &5921452902532265314
 GameObject:
   m_ObjectHideFlags: 0
@@ -2043,7 +2041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotAnchor: {fileID: 4211592761986028637}
-  slotType: 1
+  <SlotType>k__BackingField: 1
 --- !u!1 &8983845746989831951
 GameObject:
   m_ObjectHideFlags: 0
