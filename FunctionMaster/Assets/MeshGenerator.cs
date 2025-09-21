@@ -11,7 +11,7 @@ public class MeshGenerator : MonoBehaviour
     public const int yVertice = 100;
     void Start()
     {
-        ShapeMesh("(x - 5) / (y - 5)");
+        ShapeMesh("x * y");
     }
 
     public void ShapeMesh(string formula)
@@ -29,7 +29,7 @@ public class MeshGenerator : MonoBehaviour
             {
                 for (int j = 0; j < yVertice; j++)
                 {
-                    float z = (float)function.calculate(i / 10f, j / 10f);
+                    float z = (float)function.calculate(i / 10f - 5, j / 10f - 5);
                     if(z < 0)
                     {
                         z = Mathf.Max(z, -5);
