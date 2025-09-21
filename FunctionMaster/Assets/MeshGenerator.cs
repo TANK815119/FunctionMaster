@@ -12,7 +12,7 @@ public class MeshGenerator : MonoBehaviour
     public const int maxHeight = 10;
     void Start()
     {
-        ShapeMesh("x^2 + y^2");
+        //ShapeMesh("x^2 + y^2");
     }
 
     public void ShapeMesh(string formula)
@@ -82,7 +82,7 @@ public class MeshGenerator : MonoBehaviour
                     triangles[k++] = topRight + toReverse;
                     triangles[k++] = bottomRight + toReverse;
                     triangles[k++] = bottomLeft + toReverse;
-                //}
+                }
             }
         }
 
