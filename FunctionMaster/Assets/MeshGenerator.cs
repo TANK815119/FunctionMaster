@@ -7,15 +7,20 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class MeshGenerator : MonoBehaviour
 {
-    public const int xVertice = 10;
-    public const int yVertice = 10;
+    public const int xVertice = 100;
+    public const int yVertice = 100;
     void Start()
+    {
+        ShapeMesh("(x - 5) / (y - 5)");
+    }
+
+    void ShapeMesh(string formula)
     {
         Mesh mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
         int k = 0;
         // Define vertices (positions in 3D space)
-        Function function = FunctionParser.parse("(x - 5) * (y - 5)");
+        Function function = FunctionParser.parse(formula);
 
         Vector3[] vertices = new Vector3[xVertice * yVertice * 2];
         for (int l = 0; l < 2; l++)
@@ -24,7 +29,7 @@ public class MeshGenerator : MonoBehaviour
             {
                 for (int j = 0; j < yVertice; j++)
                 {
-                    vertices[k++] = new Vector3(i, (int)function.calculate(i, j), j);
+                    vertices[k++] = new Vector3(i / 10f, (float)function.calculate(i / 10f, j / 10f), j / 10f);
                 }
             }
         }
@@ -39,7 +44,7 @@ public class MeshGenerator : MonoBehaviour
         k = 0;
         for (int i = 0; i < xVertice - 1; i++)
         {
-            for(int j = 0; j < yVertice - 1; j++)
+            for (int j = 0; j < yVertice - 1; j++)
             {
                 int topLeft = i + j * xVertice;
                 int topRight = (i + 1) + j * xVertice;
