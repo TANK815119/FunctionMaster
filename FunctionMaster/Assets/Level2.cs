@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Level2 : MonoBehaviour
 {
@@ -44,6 +46,7 @@ public class Level2 : MonoBehaviour
             ball.GetComponent<Rigidbody>().isKinematic = true;
             Debug.Log("Passed Level 2!");
             start_level = false;
+            SceneManager.LoadScene("Level3");
         }
     }
 }
